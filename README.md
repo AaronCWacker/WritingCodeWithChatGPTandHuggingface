@@ -83,5 +83,49 @@ Wikipedia AI Search: Use to fact check:  https://huggingface.co/spaces/awacke1/W
 ![image](https://user-images.githubusercontent.com/30595158/217810205-0e20d2ad-826a-4b19-b5eb-f49ca23db65a.png)
 
 
+# Gradio program generation example:
+
+Prompt:
+create a python program that uses the gradio library to generate an interface which loads three huggingface spaces and displays them in the same gradio program.
+
+Output Code:
+'''
+import gradio as gr
+import transformers
+
+# Load the three models using Hugging Face's transformers library
+model1 = transformers.AutoModel.from_pretrained("bert-base-cased")
+model2 = transformers.AutoModel.from_pretrained("roberta-base")
+model3 = transformers.AutoModel.from_pretrained("distilbert-base-cased")
+
+# Define a function that takes an input text and returns the model's output
+def get_output(model, input_text):
+    input_ids = transformers.preprocessing.tokenization_utils.map_text_to_ids(tokenizer, input_text)
+    input_tensor = torch.tensor(input_ids).unsqueeze(0)
+    output = model(input_tensor)[0]
+    return output.tolist()[0]
+
+# Create an input interface for the user to enter their text
+inputs = gr.inputs.Textbox(lines=2, label="Enter your text here:")
+
+# Create a radio button interface to select which model to use
+models = gr.interface.Radio(["BERT", "RoBERTa", "DistilBERT"], default="BERT")
+
+# Define the main function that will be called when the user submits their text and model choice
+def main(inputs, models):
+    input_text = inputs
+    if models == "BERT":
+        output = get_output(model1, input_text)
+    elif models == "RoBERTa":
+        output = get_output(model2, input_text)
+    else:
+        output = get_output(model3, input_text)
+    return output
+
+# Create and launch the Gradio interface
+interface = gr.Interface(fn=main, inputs=inputs, interfaces=models, out_features=gr.outputs.Textbox(lines=10), title="Hugging Face Models")
+interface.launch()
+'''
+
 
 
