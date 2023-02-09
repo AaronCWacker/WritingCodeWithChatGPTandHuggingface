@@ -256,3 +256,46 @@ outputs = [
     gr.Textbox(label="Data written to records.csv")
 ]
     ```
+# Try again in streamlit
+
+```
+Write a python program using streamlit that writes a CSV file with three columns: RecordCount, Topic, Intervention and output are the three field names, writes the file and then loads the file and with three example records draws a plotly Plot with the three values.
+```
+
+```
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+
+# Create a function to write the CSV file
+def write_csv(record_count, topic, intervention):
+    df = pd.DataFrame({
+        "RecordCount": [record_count],
+        "Topic": [topic],
+        "Intervention": [intervention]
+    })
+    df.to_csv("records.csv", index=False, mode='a')
+
+# Create a function to plot the data from the CSV file
+def plot_data():
+    df = pd.read_csv("records.csv")
+    fig = px.scatter(df, x="RecordCount", y="Intervention", color="Topic")
+    return fig
+
+st.set_page_config(page_title="Record Plotter", page_icon=":chart_with_upwards_trend:", layout="wide")
+
+# Get the input values from the user
+record_count = st.sidebar.slider("Record Count", min_value=0, max_value=100, value=50)
+topic = st.sidebar.text_input("Topic")
+intervention = st.sidebar.text_input("Intervention")
+
+# Write the data to the CSV file
+write_csv(record_count, topic, intervention)
+
+# Plot the data from the CSV file
+fig = plot_data()
+st.plotly_chart(fig)
+
+# Display a message indicating that the data was written to the CSV file
+st.success("Data written to records.csv")
+```
