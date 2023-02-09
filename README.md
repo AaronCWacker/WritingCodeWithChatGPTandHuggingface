@@ -1,4 +1,4 @@
-# WritingCodeWithChatGPTandHuggingface
+# Writing Python With ChatGPT and Huggingface
 
 This is a quick demonstration to get anyone up to speed with generating AI and Python programs using state of the art AI.
 
