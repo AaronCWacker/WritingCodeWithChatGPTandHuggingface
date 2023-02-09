@@ -232,3 +232,18 @@ The description of the program was also sublime:
 ```
 This program creates a Gradio interface with three inputs: Record Count, Topic, and Intervention. When the user inputs the values and submits the form, the values are passed to the write_csv function, which writes the data to a CSV file named records.csv. The plot_data function is then called to read the CSV file and create a scatter plot using Plotly. The plot and a text message indicating that the data was written to the CSV file are then displayed in the Gradio interface.
 ```
+
+
+# Test and Analyze Your New Program: What Works?  What Does Not Work?
+https://huggingface.co/spaces/awacke1/GradioAutoCSVLoaderToPlotly
+
+# Defects:
+Traceback (most recent call last):
+  File "app.py", line 22, in <module>
+    gr.inputs.Slider(label="Record Count", min=0, max=100, default=50),
+TypeError: __init__() got an unexpected keyword argument 'min'
+    
+    # Fixes:
+        gr.inputs.Slider(label="Record Count", minimum=0, maximum=100, default=50),
+
+    
