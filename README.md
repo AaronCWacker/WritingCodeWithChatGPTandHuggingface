@@ -132,4 +132,52 @@ Add a requirements.txt file with the two imports:
 transformers
 torch
 
+Correct one liner here.  The case for the class Interface was lower case which is incorrect.  Python is case sensitive and the Interface class is as follows:
+models = gr.Interface.Radio(["BERT", "RoBERTa", "DistilBERT"], default="BERT")
+
+# Complex example with specific AI UI dataset loading UI components and graph components
+
+# Prompt:
+write a python program that uses the pandas CSV file loader to load a file, then create a gradio application that uses the fields to create a filter for each and use the gradio Interface the Dataframe, the UploadButton, and the Plot to automatically shows a plotly graph object with the results.  Also create a gradio.Examples input for three files that are CSV files.
+
+# Answer:
+
+```
+import gradio as gr
+import pandas as pd
+import plotly.express as px
+
+# Define the function to load the CSV file
+def load_data(file):
+    df = pd.read_csv(file)
+    return df
+
+# Create the input interface for the CSV file
+inputs = gr.inputs.UploadButton(label="Upload your CSV file:")
+
+# Define the main function that will be called when the user submits their file
+def main(inputs):
+    df = load_data(inputs)
+    return df
+
+# Create the output interface for the DataFrame
+outputs = gr.outputs.Dataframe(examples={"file1.csv": "path/to/file1.csv",
+                                          "file2.csv": "path/to/file2.csv",
+                                          "file3.csv": "path/to/file3.csv"})
+
+# Create the Plot output interface
+plot = gr.outputs.Plotly(click_submit_button=True)
+
+# Define the plot function that will be called when the user selects their options
+def plot_function(df, x, y):
+    fig = px.scatter(df, x=x, y=y)
+    return fig
+
+# Create the Gradio interface
+interface = gr.Interface(fn=main, inputs=inputs, outputs=outputs, title="CSV Plotter", plot=plot, plot_fn=plot_function)
+interface.launch()
+```
+
+# Prompt 2:
+
 
