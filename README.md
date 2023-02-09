@@ -255,7 +255,7 @@ outputs = [
     gr.Plot(plot_data),
     gr.Textbox(label="Data written to records.csv")
 ]
-    ```
+```
 # Try again in streamlit
 
 ```
