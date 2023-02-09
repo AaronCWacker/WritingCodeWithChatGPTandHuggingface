@@ -89,7 +89,7 @@ Prompt:
 create a python program that uses the gradio library to generate an interface which loads three huggingface spaces and displays them in the same gradio program.
 
 Output Code:
-'''
+```
 import gradio as gr
 import transformers
 
@@ -125,7 +125,11 @@ def main(inputs, models):
 # Create and launch the Gradio interface
 interface = gr.Interface(fn=main, inputs=inputs, interfaces=models, out_features=gr.outputs.Textbox(lines=10), title="Hugging Face Models")
 interface.launch()
-'''
+```
 
+Add a requirements.txt file with the two imports:
+
+transformers
+torch
 
 
