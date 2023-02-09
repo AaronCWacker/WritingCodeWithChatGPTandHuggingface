@@ -238,12 +238,21 @@ This program creates a Gradio interface with three inputs: Record Count, Topic, 
 https://huggingface.co/spaces/awacke1/GradioAutoCSVLoaderToPlotly
 
 # Defects:
+```
 Traceback (most recent call last):
   File "app.py", line 22, in <module>
     gr.inputs.Slider(label="Record Count", min=0, max=100, default=50),
 TypeError: __init__() got an unexpected keyword argument 'min'
+```
     
-    # Fixes:
-        gr.inputs.Slider(label="Record Count", minimum=0, maximum=100, default=50),
+# Fixes:
+```
+gr.inputs.Slider(label="Record Count", minimum=0, maximum=100, default=50),
 
     
+# Define the outputs for the Gradio interface
+outputs = [
+    gr.Plot(plot_data),
+    gr.Textbox(label="Data written to records.csv")
+]
+    ```
