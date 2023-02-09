@@ -5,8 +5,9 @@ This is a quick demonstration to get anyone up to speed with generating AI and P
 Our first example is ChatGPT.  Here is a step by step to get started:
 
 1. Go here: https://chat.openai.com/chat
-2. Register for the research preview, gain access then return to URL.
-3. Optionally there is a discord link from a prompt engineering cchannel here: https://discord.com/channels/974519864045756446/1046317269069864970
+2. If that was down, try here:  https://platform.openai.com/playground
+3. Register for the research preview, gain access then return to URL.
+4. Optionally there is a discord link from a prompt engineering cchannel here: https://discord.com/channels/974519864045756446/1046317269069864970
 
 Once logged in:
 
