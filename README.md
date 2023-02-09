@@ -288,6 +288,18 @@ outputs = [
     gr.Textbox(label="Data written to records.csv")
 ]
 ```
+
+# Program that plots via a CSV file and can write new record to CSV is here: 
+
+https://huggingface.co/spaces/awacke1/GradioAutoCSVLoaderToPlotly
+
+![image](https://user-images.githubusercontent.com/30595158/217847864-c9f8cfcb-94ab-47d1-bacb-fd91fbaff8c6.png)
+
+testfile.csv is here:  https://huggingface.co/spaces/awacke1/GradioAutoCSVLoaderToPlotly/blob/main/testfile.csv
+
+
+
+
 # Try again in streamlit
 
 ```
