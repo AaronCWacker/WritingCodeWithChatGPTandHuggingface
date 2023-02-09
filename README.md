@@ -153,10 +153,16 @@ interface = gr.Interface(fn=main, inputs=inputs, interfaces=models, out_features
 interface.launch()
 ```
 
+# Defects?  Test
+1. gr.interface.Radio is incorrect.  When using gradio interface elements, use gr.Radio without interface.
+2. gr.inputs.Textbox - same
+3. Notice it created three references to models rather than spaces like I asked?  Its a stronger pattern statiscally but the embed multiple spaces pattern may have been created after the cut date of last training data which was some time in 2021..
+4. There was an assumption that we didn't need to load requirements.txt - pip installing references to sdks and libraries.
+
 Add a requirements.txt file with the two imports:
 
-transformers
-torch
+1. transformers
+2. torch
 
 Correct one liner here.  The case for the class Interface was lower case which is incorrect.  Python is case sensitive and the Interface class is as follows:
 models = gr.Interface.Radio(["BERT", "RoBERTa", "DistilBERT"], default="BERT")
