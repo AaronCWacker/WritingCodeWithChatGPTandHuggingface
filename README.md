@@ -180,4 +180,55 @@ interface.launch()
 
 # Prompt 2:
 
+Write a python program using gradio that writes a CSV file with three columns: RecordCount, Topic, Intervention and output are the three field names, writes the file and then loads the file and with three example records draws a plotly Plot with the three values.
 
+
+# Output 2:
+
+```
+import gradio as gr
+import pandas as pd
+import plotly.express as px
+
+# Create a function to write the CSV file
+def write_csv(record_count, topic, intervention):
+    df = pd.DataFrame({
+        "RecordCount": [record_count],
+        "Topic": [topic],
+        "Intervention": [intervention]
+    })
+    df.to_csv("records.csv", index=False, mode='a')
+
+# Create a function to plot the data from the CSV file
+def plot_data():
+    df = pd.read_csv("records.csv")
+    fig = px.scatter(df, x="RecordCount", y="Intervention", color="Topic")
+    return fig
+
+# Define the inputs for the Gradio interface
+inputs = [
+    gr.inputs.Slider(label="Record Count", min=0, max=100, default=50),
+    gr.inputs.Textbox(label="Topic"),
+    gr.inputs.Textbox(label="Intervention")
+]
+
+# Define the outputs for the Gradio interface
+outputs = [
+    gr.outputs.Plotly(plot_data),
+    gr.outputs.Textbox(label="Data written to records.csv")
+]
+
+# Create the Gradio interface
+interface = gr.Interface(write_csv, inputs, outputs, title="Record Plotter")
+
+# Launch the Gradio interface
+interface.launch()
+
+```
+
+
+The description of the program was also sublime:
+
+```
+This program creates a Gradio interface with three inputs: Record Count, Topic, and Intervention. When the user inputs the values and submits the form, the values are passed to the write_csv function, which writes the data to a CSV file named records.csv. The plot_data function is then called to read the CSV file and create a scatter plot using Plotly. The plot and a text message indicating that the data was written to the CSV file are then displayed in the Gradio interface.
+```
